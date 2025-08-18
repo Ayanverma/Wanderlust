@@ -123,7 +123,7 @@ body {
 /* show page */
 .show-img {
     height: 30vh;
-    object-fit: cover !important;
+   width: 80vh!important;
 }
 
 .btns {
@@ -137,3 +137,43 @@ body {
     width: 100%;
     border-radius: 8px;
 }
+
+
+
+#filters {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents items from wrapping to a new line */
+  overflow-x: auto; /* Adds a horizontal scrollbar if needed */
+  align-items: center;
+}
+
+ .filter {
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  opacity: 0.7;
+  flex-shrink: 0; /* Prevents items from shrinking */
+}
+
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .filter p {
+    font-size: 0.8rem;
+  }
+
+  .tax-info {
+    display: none;
+  }
+
+  .tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+  }
