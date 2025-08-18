@@ -53,9 +53,10 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error", ()=>{
+store.on("error", (err) => {
   console.log("ERROR IN MONGO SESSION STORE", err);
 });
+
 
 const sessionOptions = {
   store,
@@ -99,16 +100,25 @@ app.get("/demouser", async (req, res) => {
   res.send(registeredUser);
 });
 
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
+
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something Went Wrong" } = err;
   res.status(statusCode).render("error.ejs", { message });
   // res.status(statusCode).send(message);
 });
-
+app.use((req, res) => {
+  // This renders your styled EJS file
+  res.status(404).render("error.ejs", { message: "Page Not Found!" });
+});
 app.listen(8080, () => {
   console.log("Server is listing to port 8080");
 });
+
